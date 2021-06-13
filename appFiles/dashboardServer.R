@@ -768,22 +768,6 @@ output$countryCompareChart = renderHighchart({
       filter(YEAR >= dateRange[1] & YEAR <= dateRange[2] ) %>%
       select(YEAR, COUNTRY, plotType) %>% arrange(YEAR) %>%
       reshape2::dcast(YEAR~COUNTRY)
-
-    # hc <- highchart() %>% 
-    #   hc_subtitle(text = paste0("Comparing ",plotType," for ",length(countryList)," countries"),
-    #               align = "left",
-    #               style = list(color = "#2b908f", fontWeight = "bold")) %>%
-    #   hc_xAxis(categories = data1$YEAR) %>%
-    #   hc_yAxis(title = list(text = paste0(plotType)))
-    # 
-    #   for (i in 1:length(countryList)) {
-    #     hc = hc_add_series(hc,
-    #                        name = countryList[i],
-    #                        data = data1 %>%
-    #                          filter(COUNTRY == countryList[i]) %>%
-    #                          .[,3]
-    #     )
-    #   }
     
     new_df <-
       data1
@@ -815,7 +799,6 @@ output$countryCompareChart = renderHighchart({
       color = "red",
       fontSize = "20px"
     )
-    chartColors = c("black", "red")
     legend = TRUE
     
     hc <-
@@ -831,17 +814,6 @@ output$countryCompareChart = renderHighchart({
         NULL,
         legend
       )
-    
-    
-    # hc <-
-    #   highcharter::hchart(data1,
-    #                       'line',
-    #                       highcharter::hcaes(x = YEAR, y = eval(parse(text=plotType)), group = COUNTRY)) %>%
-    #   highcharter::hc_legend(enabled = legend) %>%
-    #   hc_subtitle(text = paste0("Comparing ",plotType," for ",length(countryList)," countries"),
-    #               align = "left",
-    #               style = list(color = "#2b908f", fontWeight = "bold"))
-    
     
     hc %>% 
       hc_chart(borderColor = '#EBBA95',
