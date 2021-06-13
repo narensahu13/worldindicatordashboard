@@ -230,16 +230,18 @@ output$worldMap <- renderHighchart({
   x = input$highchartOption %>% as.numeric()
   value = switch(x,"HEALTH_EXP_GDP","HEALTH_EXP_PER_CAPITA","INFANT_MORTALITY_RATE","LIFE_EXPECTANCY")
   colnames(data)[1] = "name"
-  highchart(type = "map",width = "100%",height = "100%") %>%
+  
+  highchart() %>%
     hc_add_series_map(map = worldgeojson, df = data, value = value, joinBy = "name") %>%
     hc_colorAxis(stops = color_stops(5)) %>%
     hc_tooltip(useHTML = TRUE,
                headerFormat = '',
                pointFormat = paste0('{point.name}: {point.',value,'} ')) %>%
     hc_exporting(enabled = TRUE,filename = value) %>% 
-    hc_add_theme(hc_theme_ffx()) %>%
+    hc_add_theme(hc_theme_db()) %>%
     hc_chart(zoomType = "xy") %>%
     hc_mapNavigation(enabled = TRUE) %>%
+    hc_add_theme(hc_theme_google()) %>%
     hc_plotOptions(series = list( 
       events = list(click = canvasClickFunction),allowPointSelect = T))
 })
