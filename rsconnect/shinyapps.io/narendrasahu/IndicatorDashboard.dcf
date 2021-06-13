@@ -1,0 +1,12 @@
+name: IndicatorDashboard
+title: IndicatorDashboard
+username:
+account: narendrasahu
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4264349
+bundleId: 4710179
+url: https://narendrasahu.shinyapps.io/IndicatorDashboard/
+when: 1623564148.71078
+asMultiple: FALSE
+asStatic: FALSE
